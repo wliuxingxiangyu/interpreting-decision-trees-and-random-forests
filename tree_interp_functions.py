@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from __future__ import division
 
 from IPython.display import display
@@ -11,7 +13,15 @@ from statsmodels.nonparametric.smoothers_lowess import lowess
 from treeinterpreter import treeinterpreter as ti
 
 sns.set_palette('colorblind')
-blue, green, red, purple, yellow, cyan = sns.color_palette('colorblind')
+
+color_l = sns.color_palette('colorblind')
+blue = color_l[0]
+green = color_l[0]
+red = color_l[0]
+purple = color_l[0]
+yellow = color_l[0]
+cyan = color_l[0]
+
 
 def plot_obs_feature_contrib(clf, contributions, features_df, labels, index, 
                              class_index=0, num_features=None,
@@ -117,6 +127,7 @@ def plot_obs_feature_contrib(clf, contributions, features_df, labels, index,
             plt.xlabel('Contribution of feature')
 
         true_label = labels.iloc[index]
+        print("hz- labels.iloc: "+ str(labels.iloc) )
         if isinstance(clf, DecisionTreeClassifier)\
                 or isinstance(clf, RandomForestClassifier):
             scores = clf.predict_proba(features_df.iloc[index:index+1])[0]
@@ -153,7 +164,7 @@ def plot_obs_feature_contrib(clf, contributions, features_df, labels, index,
         has_ax = False
         fig, ax = plt.subplots()
 
-    feature_array = features_df.iloc[index]
+    feature_array = features_df.iloc[index] #hz-
     contrib_array = _extract_contrib_array()
 
     obs_contrib_df = pd.DataFrame({'feat_val': feature_array,
